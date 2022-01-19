@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>[[#{produit.list.titre}]]</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="container mt-3">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>[[#{produit.list.id}]]</th>
+				<th>[[#{produit.list.version}]]</th>
+				<th>[[#{produit.list.nom}]]</th>
+				<th>[[#{produit.list.prixAchat}]]</th>
+				<th>[[#{produit.list.prixVente}]]</th>
+				<th>[[#{produit.list.fournisseur}]]</th>
+				<th></th>
+			</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="pro : ${mesProduits}">
+					<td th:text="${pro.id}"></td>
+					<td>[[${pro.version}]]</td>
+					<td>[[${pro.nom}]]</td>
+					<td>[[${pro.prixAchat}]]</td>
+					<td>[[${pro.prixVente}]]</td>
+					<td>[[${pro.fournisseur?.societe}]]</td>
+					<td><div class="btn-group btn-group-sm">
+						    <a th:href="@{/produit/edit(id=${pro.id})}" type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i></a>
+						    <a th:href="@{/produit/delete(id=${pro.id})}" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+						  </div>
+					</td>
+				</tr>
+			</tbody>
+			
+			<tfoot>
+				<tr>
+					<td colspan="7"><a th:href="@{/produit/add}" class="btn btn-success btn-lg"><i class="bi bi-plus-square-fill"></i></a></td>
+				</tr>			
+			</tfoot>
+		</table>
+	</div>
+	</section>
+</body>
+</html>

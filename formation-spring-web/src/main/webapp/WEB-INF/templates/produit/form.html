@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>[[#{produit.form.titre}]]</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/produit/saveBis}" method="post" id="produitForm">
+				<input type="hidden" name="id" th:value="${monProduit.id}">
+				<input type="hidden" name="version" th:value="${monProduit.version}">
+				<div class="card-header bg-info text-white">
+					<h3>[[#{produit.form.entete}]]</h3>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="nom">[[#{produit.form.nom}]]:</label> <input type="text"
+							class="form-control" id="nom" name="nom"
+							th:value="${monProduit.nom}">
+						<span class="text-danger" th:errors="${monProduit.nom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prixAchat">[[#{produit.form.prixAchat}]]:</label> <input type="number"
+							class="form-control" id="prixAchat" name="prixAchat"
+							th:value="${monProduit.prixAchat}">
+						<span class="text-danger" th:errors="${monProduit.prixAchat}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prixVente">[[#{produit.form.prixVente}]]:</label> <input type="number"
+							class="form-control" id="prixVente" name="prixVente"
+							th:value="${monProduit.prixVente}">
+						<span class="text-danger" th:errors="${monProduit.prixVente}"></span>
+					</div>
+					<div class="form-group">
+						<label for="fournisseur.id">[[#{produit.form.fournisseur}]]:</label> <select
+							class="form-control" name="fournisseur.id" id="fournisseur.id">
+							<option value="">[[#{produit.form.fournisseur.select}]]</option>
+							<option th:each="four : ${fournisseurs}" th:value="${four.id}"
+								th:selected="${monProduit.fournisseur?.id == four.id}">[[${four.societe}]]
+								([[${four.nom}]] [[${four.prenom}]])</option>
+						</select>
+						<span class="text-danger" th:errors="${monProduit.fournisseur}"></span>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success" onclick="valider()">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/produit/cancel}" type="button"
+							class="btn btn-warning"> <i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+	
+
+</body>
+</html>
