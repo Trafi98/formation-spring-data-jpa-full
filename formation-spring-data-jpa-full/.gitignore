@@ -1,0 +1,12 @@
+# Fichier pour ignorer des fichiers
+.vscode/
+
+# Fichiers à ignonrer pour les environnements JAVA / ECLIPSE
+bin/
+.settings/
+target/
+.project
+.classpath
+
+# ignore node modules
+node_modules/
