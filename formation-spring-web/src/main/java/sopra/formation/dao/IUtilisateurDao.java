@@ -41,4 +41,9 @@ public interface IUtilisateurDao extends JpaRepository<Utilisateur, Long>, Utili
 	
 	@Query("select u from Utilisateur u where u.id = :id")
 	Optional<Utilisateur> findUtilisateurById(@Param("id") Long id);
+	
+	@Query("select f from Client Formateur f")
+	List<Formateur> findAllFormateur();
+	
+	
 }
