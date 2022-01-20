@@ -28,7 +28,9 @@ public class CompetenceController {
 	
 	@Autowired
 	private ICompetenceDao competenceDao;
+	@Autowired
 	private IUtilisateurDao utilisateurDao;
+	@Autowired
 	private IMatiereDao matiereDao;
 	
 	@GetMapping("")
