@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition du matiere</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/matiere/save}" method="post">
+				<input type="hidden" name="id" th:value="${matiere.id}">
+				<input type="hidden" name="version" th:value="${matiere.version}">
+				<div class="card-header bg-info text-white">
+					<h3>Edition de la matiere</h3>
+				</div>
+				<div class="card-body">
+				</div>
+					<div class="form-group">
+						<label for="nom">Titre:</label> <input type="text"
+							class="form-control" id="titre" name="titre"
+							th:value="${matiere.titre}">
+					</div>
+					<div class="form-group">
+						<label for="nom">Durée:</label> <input type="text"
+							class="form-control" id="titre" name="duree"
+							th:value="${matiere.duree}">
+					</div>
+					<div class="form-group">
+						<label for="nom">Objectifs:</label> <input type="text"
+							class="form-control" id="objectifs" name="objectifs"
+							th:value="${matiere.objectifs}">
+					</div>
+					<div class="form-group">
+						<label for="nom">Prérequis:</label> <input type="text"
+							class="form-control" id="preRequis" name="preRequis"
+							th:value="${matiere.preRequis}">
+					</div>
+					<div class="form-group">
+						<label for="nom">Programme:</label> <input type="text"
+							class="form-control" id="programme" name="programme"
+							th:value="${matiere.programme}">
+					
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/matiere/cancel}" type="button"
+							class="btn btn-warning"> <i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+
+</body>
+</html>

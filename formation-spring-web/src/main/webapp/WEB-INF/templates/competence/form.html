@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>AJouter des compétences</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/competence/save}" method="post" id="competenceForm">
+				<input type="hidden" name="id" th:value="${competence.id}">
+				<input type="hidden" name="version" th:value="${monProduit.version}">
+				<div class="card-header bg-info text-white">
+					<h3>Enregistrer la compétence</h3>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="civilite">Niveau de la compétence:</label> 
+						<select
+							class="form-control" name="niveau" id="niveau">
+							<option value="">Sélectionner un niveau de compétences:</option>
+							<option th:each="niv : ${niveau}" th:value="${niv}"
+								th:selected="${competence.niveau == niv}">[[${niv.label}]]</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="formateur.id">Lise des formateurs</label> <select
+							class="form-control" name="formateur.id" id="formateur.id">
+							<option value="">Sélectionnez le formateur</option>
+							<option th:each="for : ${formateurs}" th:value="${for.id}"
+								th:selected="${competence.formateur?.id == for.id}">([[${for.nom}]] [[${for.prenom}]])
+							</option>
+						</select>
+						<span class="text-danger" th:errors="${competence.formateur}"></span>
+					</div>
+					<div class="form-group">
+						<label for="formateur.id">Lise des matières</label> <select
+							class="form-control" name="matiere.id" id="matiere.id">
+							<option value="">Sélectionnez la matière</option>
+							<option th:each="mat : ${matieres}" th:value="${mat.id}"
+								th:selected="${competence.matiere?.id == mat.id}">([[${mat.titre}]]
+						</select>
+						<span class="text-danger" th:errors="${competence.formateur}"></span>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success" onclick="valider()">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/competence/cancel}" type="button"
+							class="btn btn-warning"> <i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+	
+
+</body>
+</html>

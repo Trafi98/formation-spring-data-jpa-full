@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import sopra.formation.model.Cours;
+import sopra.formation.model.Matiere;
 
 public interface ICoursDao extends JpaRepository<Cours, Long> {
 	// Lister les cours d'une filière (paramètre) qui ont durée différente de la
@@ -18,4 +19,7 @@ public interface ICoursDao extends JpaRepository<Cours, Long> {
 	// formateur
 	@Query("select c from Cours c join c.filiere f where f.id = :idFiliere")
 	List<Cours> findByFiliereWithMatiereAndFormateur(@Param("idFiliere") String id);
+	
+	@Query("select c from Cours c")
+	List<Cours> findAllCours();
 }
