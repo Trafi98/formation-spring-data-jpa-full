@@ -4,7 +4,7 @@
 		layout:decorator="layout.html">
 <head>
 <meta charset="UTF-8">
-<title>[[#{produit.list.titre}]]</title>
+<title>Liste des compétences</title>
 </head>
 <body>
 	<section layout:fragment="monContenu">
@@ -12,27 +12,21 @@
 		<table class="table table-striped">
 			<thead>
 			<tr>
-				<th>[[#{produit.list.id}]]</th>
-				<th>[[#{produit.list.version}]]</th>
-				<th>[[#{produit.list.nom}]]</th>
-				<th>[[#{produit.list.prixAchat}]]</th>
-				<th>[[#{produit.list.prixVente}]]</th>
-				<th>[[#{produit.list.fournisseur}]]</th>
+				<th>Niveau de compétences</th>
+				<th>Formateurs</th>
+				<th>Matière</th>
 				<th></th>
 			</tr>
 			</thead>
 
 			<tbody>
-				<tr th:each="pro : ${mesProduits}">
-					<td th:text="${pro.id}"></td>
-					<td>[[${pro.version}]]</td>
-					<td>[[${pro.nom}]]</td>
-					<td>[[${pro.prixAchat}]]</td>
-					<td>[[${pro.prixVente}]]</td>
-					<td>[[${pro.fournisseur?.societe}]]</td>
+				<tr th:each="competence : ${competences}">
+					<td>[[${competence.niveau}]]</td>
+					<td>[[${competence.formateur?.nom}]]</td>
+					<td>[[${competence.matiere?.titre}]]</td>
 					<td><div class="btn-group btn-group-sm">
-						    <a th:href="@{/produit/edit(id=${pro.id})}" type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i></a>
-						    <a th:href="@{/produit/delete(id=${pro.id})}" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+						    <a th:href="@{/competence/edit(id=${competence.id})}" type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i></a>
+						    <a th:href="@{/competence/delete(id=${competence.id})}" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
 						  </div>
 					</td>
 				</tr>
@@ -40,7 +34,7 @@
 			
 			<tfoot>
 				<tr>
-					<td colspan="7"><a th:href="@{/produit/add}" class="btn btn-success btn-lg"><i class="bi bi-plus-square-fill"></i></a></td>
+					<td colspan="5"><a th:href="@{/competence/add}" class="btn btn-success btn-lg"><i class="bi bi-plus-square-fill"></i></a></td>
 				</tr>			
 			</tfoot>
 		</table>

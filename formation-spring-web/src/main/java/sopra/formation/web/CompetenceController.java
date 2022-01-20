@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import sopra.formation.dao.ICompetenceDao;
+import sopra.formation.dao.IMatiereDao;
+import sopra.formation.dao.IUtilisateurDao;
 import sopra.formation.model.Competence;
+import sopra.formation.model.Formateur;
+import sopra.formation.model.Matiere;
 import sopra.formation.model.Niveau;
 
 @Controller
@@ -25,6 +28,8 @@ public class CompetenceController {
 	
 	@Autowired
 	private ICompetenceDao competenceDao;
+	private IUtilisateurDao utilisateurDao;
+	private IMatiereDao matiereDao;
 	
 	@GetMapping("")
 	public String list(Model model) {
@@ -37,7 +42,12 @@ public class CompetenceController {
 
 	@GetMapping("/add")
 	public String add(Model model) {
+//		List<Formateur> formateurs = utilisateurDao.findAllFormateur();
+//		List<Matiere> matieres = matiereDao.findAllMatiere();
+		
 		model.addAttribute("niveau", Niveau.values());
+//		model.addAttribute("formateurs", formateurs);
+//		model.addAttribute("matieres", matieres);
 		model.addAttribute("competence", new Competence());
 
 		return "competence/form";
@@ -51,7 +61,7 @@ public class CompetenceController {
 			model.addAttribute("competence", optCompetence.get());
 		}
 
-		model.addAttribute("niveau", Niveau.values());
+		model.addAttribute("competence", new Competence());
 
 		return "competence/form";
 	}
