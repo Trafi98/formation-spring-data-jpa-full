@@ -11,17 +11,13 @@
 	<header>
 		<ul class="nav nav-pills m-5">
 			<li class="nav-item"><a class="nav-link" th:href="@{/}">Accueil</a></li>
-			<li class="nav-item"><a class="nav-link" th:href="@{/utilisateur}">Gestionnaires</a></li>
-
+			<li><a class="dropdown-item" th:href="@{/utilisateur}">Accéder à la liste des utilisateurs :</a></li>
+			<li><a class="dropdown-item" th:href="@{/absence}">Gestion des absences</a></li>
+	        <li><a class="dropdown-item" th:href="@{/inscription}">Inscription</a></li>    		
 			<li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            Inscription
 	          </a>
-	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" th:href="@{/inscriptionClient}">Inscription Client</a></li>
-	            <li><a class="dropdown-item" th:href="@{/inscriptionFournisseur}">Inscription Fournisseur</a></li>
-	          </ul>
-        	</li>
 		</ul>
 	</header>
 	<div class="container-fluid">

@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Absence {
@@ -16,6 +20,8 @@ public class Absence {
 	private Long id;
 	@Version
 	private int version;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Future(message = "La date d'absence est déjà passée")
 	private LocalDate date;
 	@ManyToOne
 	@JoinColumn(name="formateur_id")

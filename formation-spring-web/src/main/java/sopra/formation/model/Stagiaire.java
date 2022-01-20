@@ -8,9 +8,12 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @DiscriminatorValue("Stagiaire")
 public class Stagiaire extends Utilisateur {
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	@OneToMany(mappedBy = "stagiaire")
 	private List<Cursus> cursus = new ArrayList<>();

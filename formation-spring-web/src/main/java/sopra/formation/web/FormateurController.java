@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import sopra.formation.dao.IUtilisateurDao;
 import sopra.formation.model.Droit;
-import sopra.formation.model.Utilisateur;
+import sopra.formation.model.Formateur;
 
 
 @Controller
-@RequestMapping("/utilisateur")
-public class UtilisateurController {
+@RequestMapping("/formateur")
+public class FormateurController {
 	
 
 		@Autowired
@@ -28,54 +28,52 @@ public class UtilisateurController {
 
 		@GetMapping("")
 		public String list(Model model) {
-			List<Utilisateur> utilisateurs = utilisateurDao.findAllUtilisateur();
+			List<Formateur> formateurs = utilisateurDao.findAllFormateur();
 
-			model.addAttribute("utilisateurs", utilisateurs);
-			model.addAttribute("droits", Droit.values());
+			model.addAttribute("formateurs", formateurs);
 
 			return "utilisateur/list";
 		}
 
 		@GetMapping("/add")
 		public String add(Model model) {
-			model.addAttribute("utilisateur", new Utilisateur());
-			model.addAttribute("droits", Droit.values());
+			model.addAttribute("formateur", new Formateur());
 
-			return "utilisateur/form";
+			return "formateur/form";
 		}
 
 		@GetMapping("/edit")
 		public String edit(@RequestParam Long id, Model model) {
-			Optional<Utilisateur> optUtilisateur = utilisateurDao.findUtilisateurById(id);
+			Optional<Formateur> optFormateur = utilisateurDao.findFormateurById(id);
 
-			if (optUtilisateur.isPresent()) {
-				model.addAttribute("utilisateur", optUtilisateur.get());
+			if (optFormateur.isPresent()) {
+				model.addAttribute("formateur", optFormateur.get());
 			}
-			model.addAttribute("droits", Droit.values());
 
-			return "utilisateur/form";
+
+			return "formateur/form";
 		}
 
 		
 		@PostMapping("/save")
-		public String saveBis(@ModelAttribute("utilisateur") Utilisateur utilisateur) {
+		public String saveBis(@ModelAttribute("formateur") Formateur formateur) {
 			
-			utilisateur.setDroit(Droit.GESTIONNAIRE);
-			utilisateurDao.save(utilisateur);
+			formateur.setDroit(Droit.FORMATEUR);
+			utilisateurDao.save(formateur);
 
 			return "redirect:/utilisateur";
 		}
 
 		@GetMapping("/cancel")
 		public String cancel() {
-			return "forward:/utilisateur";
+			return "forward:/formateur";
 		}
 
 		@GetMapping("/delete")
 		public String delete(@RequestParam Long id) {
 			utilisateurDao.deleteById(id);
 
-			return "redirect:/utilisateur";
+			return "redirect:/formateur";
 		}
 
 }

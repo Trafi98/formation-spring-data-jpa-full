@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Qui êtes vous ?</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/testinscription}" method="post">
+				<input type="hidden" name="id" th:value="${utilisateur.id}">
+				<input type="hidden" name="version" th:value="${utilisateur.version}">
+				<div class="card-header bg-info text-white">
+					<h3>Qui êtes vous ?</h3>
+				</div>
+				
+				<div class="card-body">
+					<div class="form-group">
+						<label for="droit">Êtes vous :</label> <select
+							class="form-control" name="droit" id="droit">
+							<option value="">Sélectionner ce qui vous correspond</option>
+							<option th:each="dr : ${droits}" th:value="${dr}"
+								th:selected="${utilisateur.droit == dr}">[[${dr.label}]]</option>
+						</select>
+					</div>
+
+					
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/}" type="button"
+							class="btn btn-warning"> <i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+
+</body>
+</html>

@@ -4,67 +4,72 @@
 	layout:decorator="layout.html">
 <head>
 <meta charset="UTF-8">
-<title>Edition des Formateurs</title>
+<title>Edition des Stagiaires</title>
 </head>
 <body>
 	<section layout:fragment="monContenu">
 		<div class="card mt-3">
-			<form th:action="@{/formateur/save}" method="post">
-				<input type="hidden" name="id" th:value="${formateur.id}">
-				<input type="hidden" name="version" th:value="${formateur.version}">
+			<form th:action="@{/stagiaire/save}" method="post">
+				<input type="hidden" name="id" th:value="${stagiaire.id}">
+				<input type="hidden" name="version" th:value="${stagiaire.version}">
 				<div class="card-header bg-info text-white">
-					<h3>Edition des Formateurs</h3>
+					<h3>Edition des Stagiaires</h3>
 				</div>
 				<div class="card-body">
 					<div class="form-group">
 						<label for="nom">Nom:</label> <input type="text"
 							class="form-control" id="nom" name="nom"
-							th:value="${formateur.nom}">
+							th:value="${stagiaire.nom}">
 					</div>
 					<div class="form-group">
 						<label for="prenom">Prénom:</label> <input type="text"
 							class="form-control" id="prenom" name="prenom"
-							th:value="${formateur.prenom}">
+							th:value="${stagiaire.prenom}">
 					</div>
 					<div class="form-group">
 						<label for="email">Email :</label> <input type="text"
 							class="form-control" id="email" name="email"
-							th:value="${formateur.email}">
+							th:value="${stagiaire.email}">
 					</div>
 					<div class="form-group">
 						<label for="telephone">Telephone :</label> <input type="number"
 							class="form-control" id="telephone" name="telephone"
-							th:value="${formateur.telephone}">
+							th:value="${stagiaire.telephone}">
 					</div>
 					<div class="form-group">
 						<label for="rue">Rue:</label> <input type="text"
 							class="form-control" id="rue" name="adr.rue"
-							th:value="${formateur.adr?.rue}">
+							th:value="${stagiaire.adr?.rue}">
 					</div>
 					<div class="form-group">
 						<label for="complement">Complément:</label> <input type="text"
 							class="form-control" id="complement" name="adr.complement"
-							th:value="${formateur.adr?.complement}">
+							th:value="${stagiaire.adr?.complement}">
 					</div>
 					<div class="form-group">
 						<label for="codePostal">Code postal:</label> <input type="text"
 							class="form-control" id="codePostal" name="adr.codePostal"
-							th:value="${formateur.adr?.codePostal}">
+							th:value="${stagiaire.adr?.codePostal}">
 					</div>
 					<div class="form-group">
 						<label for="ville">Ville:</label> <input type="text"
 							class="form-control" id="ville" name="adr.ville"
-							th:value="${formateur.adr?.ville}">
+							th:value="${stagiaire.adr?.ville}">
+					</div>
+					<div class="form-group">
+						<label for="dateNaissance">Date de naissance:</label> <input type="date"
+							class="form-control" id="dateNaissance" name="dateNaissance"
+							th:value="${stagiaire.dateNaissance}">
 					</div>
 					<div class="form-group">
 						<label for="identifiant">Identifiant :</label> <input type="text"
 							class="form-control" id="identifiant" name="identifiant"
-							th:value="${formateur.identifiant}">
+							th:value="${stagiaire.identifiant}">
 					</div>
 					<div class="form-group">
 						<label for="motDePasse">Mot de Passe :</label> <input type="password"
 							class="form-control" id="motDePasse" name="motDePasse"
-							th:value="${formateur.motDePasse}">
+							th:value="${stagiaire.motDePasse}">
 					</div>
 					
 				</div>
@@ -73,7 +78,7 @@
 						<button type="submit" class="btn btn-success">
 							<i class="bi bi-check-square"></i>
 						</button>
-						<a th:href="@{/formateur/cancel}" type="button"
+						<a th:href="@{/stagiaire/cancel}" type="button"
 							class="btn btn-warning"> <i class="bi bi-backspace"></i>
 						</a>
 					</div>
