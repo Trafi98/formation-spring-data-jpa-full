@@ -9,7 +9,7 @@
 <body>
 	<section layout:fragment="monContenu">
 		<div class="card mt-3">
-			<form th:action="@{/matiere/saveBis}" method="post">
+			<form th:action="@{/matiere/save}" method="post">
 				<input type="hidden" name="id" th:value="${matiere.id}">
 				<input type="hidden" name="version" th:value="${matiere.version}">
 				<div class="card-header bg-info text-white">
