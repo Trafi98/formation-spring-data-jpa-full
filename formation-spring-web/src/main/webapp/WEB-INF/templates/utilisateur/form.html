@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition des Gestionnaires</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="card mt-3">
+			<form th:action="@{/utilisateur/save}" method="post">
+				<input type="hidden" name="id" th:value="${utilisateur.id}">
+				<input type="hidden" name="version" th:value="${utilisateur.version}">
+				<div class="card-header bg-info text-white">
+					<h3>Edition du gestionnaire</h3>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="nom">Nom:</label> <input type="text"
+							class="form-control" id="nom" name="nom"
+							th:value="${utilisateur.nom}">
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom:</label> <input type="text"
+							class="form-control" id="prenom" name="prenom"
+							th:value="${utilisateur.prenom}">
+					</div>
+					<div class="form-group">
+						<label for="email">Email :</label> <input type="text"
+							class="form-control" id="email" name="email"
+							th:value="${utilisateur.email}">
+					</div>
+					<div class="form-group">
+						<label for="telephone">Telephone :</label> <input type="number"
+							class="form-control" id="telephone" name="telephone"
+							th:value="${utilisateur.telephone}">
+					</div>
+					<div class="form-group">
+						<label for="rue">Rue:</label> <input type="text"
+							class="form-control" id="rue" name="adr.rue"
+							th:value="${utilisateur.adr?.rue}">
+					</div>
+					<div class="form-group">
+						<label for="complement">Complément:</label> <input type="text"
+							class="form-control" id="complement" name="adr.complement"
+							th:value="${utilisateur.adr?.complement}">
+					</div>
+					<div class="form-group">
+						<label for="codePostal">Code postal:</label> <input type="text"
+							class="form-control" id="codePostal" name="adr.codePostal"
+							th:value="${utilisateur.adr?.codePostal}">
+					</div>
+					<div class="form-group">
+						<label for="ville">Ville:</label> <input type="text"
+							class="form-control" id="ville" name="adr.ville"
+							th:value="${utilisateur.adr?.ville}">
+					</div>
+					
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/utilisateur/cancel}" type="button"
+							class="btn btn-warning"> <i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</section>
+
+</body>
+</html>
