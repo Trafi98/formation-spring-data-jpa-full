@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Liste des clients</title>
+</head>
+<body>
+	<section layout:fragment="monContenu">
+		<div class="container mt-3">
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Titre</th>
+				<th>Durée</th>
+				<th>Objectifs</th>
+				<th>Prerequis</th>
+				<th>Programme</th>
+				<th></th>
+			</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="mat : ${matieres}">
+					<td>[[${mat.titre}]]</td>
+					<td>[[${mat.duree}]]</td>
+					<td>[[${mat.objectifs}]]</td>
+					<td>[[${mat.preRequis}]]</td>
+					<td>[[${mat.programme}]]</td>
+					<td><div class="btn-group btn-group-sm">
+						    <a th:href="@{/matiere/edit(id=${mat.id})}" type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i></a>
+						    <a th:href="@{/matiere/delete(id=${mat.id})}" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
+						  </div>
+					</td>
+				</tr>
+			</tbody>
+			
+			<tfoot>
+				<tr>
+					<td colspan="6"><a th:href="@{/matiere/add}" class="btn btn-success btn-lg"><i class="bi bi-plus-square-fill"></i></a></td>
+				</tr>			
+			</tfoot>
+		</table>
+	</div>
+	</section>
+</body>
+</html>
